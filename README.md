@@ -1,13 +1,12 @@
 
 # Movie API
 
-
-
 The Movie API is a Spring Boot backend application designed to perform CRUD operations on a MongoDB database. It enables seamless management of movie records, including adding, updating, and deleting entries. Additionally, it facilitates user interaction by providing a feature to rate movies, enhancing the overall user experience and data functionality.
 
 ## Table of Contents
 - [Tech Stack](#tech-stack)
 - [Prerequisites](#prerequisites)
+- [MongoDB Set up](#mongodb-set-up)
 - [Installation](#installation)
 - [Contributing](#contributing)
 - [License](#license)
@@ -28,6 +27,92 @@ The Movie API is a Spring Boot backend application designed to perform CRUD oper
 
 3. **Navigate to the project directory:**
    Open Command Prompt and navigate to the directory containing your Maven project (`pom.xml` file).
+
+## MongoDB Set up
+
+- **Windows**
+1. Download MongoDB Community Server from [MongoDB's official website](https://www.mongodb.com/try/download/community).
+2. Run the installer and follow the instructions:
+   - Choose "Complete" installation for default settings.
+   - Install MongoDB Compass for a graphical interface (optional).
+3. Add MongoDB's bin directory to your system’s PATH variable:
+   - Example: `C:\Program Files\MongoDB\Server\<version>\bin`
+
+- **macOS**
+1. Install Homebrew if not already installed:
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+2. Install MongoDB using Homebrew:
+   ```bash
+   brew tap mongodb/brew
+   brew install mongodb-community
+   ```
+
+- **Linux**
+1. Import MongoDB's public GPG key:
+   ```bash
+   wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+   ```
+2. Add the MongoDB repository:
+   ```bash
+   echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+   ```
+3. Update the package database and install MongoDB:
+   ```bash
+   sudo apt update
+   sudo apt install -y mongodb-org
+   ```
+
+---
+
+### 2. Start MongoDB
+
+#### **Windows**
+- Start MongoDB as a service:
+  1. Open `services.msc`, find `MongoDB`, and start it.
+  2. Alternatively, start it manually:
+     ```bash
+     mongod
+     ```
+
+#### **macOS/Linux**
+- Start MongoDB:
+  ```bash
+  brew services start mongodb/brew/mongodb-community
+  # OR on Linux
+  sudo systemctl start mongod
+  ```
+
+---
+
+### 3. Verify Installation
+
+To confirm MongoDB is running, use the Mongo shell:
+```bash
+mongo
+```
+You should see a prompt indicating that you are connected to the Mongo shell.
+
+---
+
+### 4. Create a Database
+
+1. Open the Mongo shell:
+   ```bash
+   mongo
+   ```
+2. Switch to (or create) a database:
+   ```bash
+   use myDatabase
+   ```
+   Replace `myDatabase` with your desired database name.
+3. Insert a document to create the database:
+   ```bash
+   db.myCollection.insertOne({ name: "Test", type: "Example" })
+   ```
+
+---
 
 ## Installation
 ### Steps to Run the project in Popular IDEs
